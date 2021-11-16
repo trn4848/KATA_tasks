@@ -1,51 +1,69 @@
 
 
 public class Main {
+
+    public static void main(String[] args) {
+
+    }
+
+
     enum Label {
         SPAM, NEGATIVE_TEXT, TOO_LONG, OK
+    }
+
+    abstract class KeywordAnalyzer {
+
+        protected abstract String[] getKeywords();
+        protected abstract Label getLabel();
     }
 
     interface TextAnalyzer {
         Label processText(String text);
     }
 
-    public static void main(String[] args) {
-
-    }
-
-    abstract class KeywordAnalyzer {
-         abstract getKeywords();
-
-
-    }
-
-    public class SpamAnalyzer implements TextAnalyzer{
+    public class SpamAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
         private String[] keywords;
 
-        public SpamAnalyzer(String[] keywords){
+        public SpamAnalyzer(String[] keywords) {
             this.keywords = keywords.clone();
         }
 
-        Label processText(String text){
+        public String[] getKeywords() {
+
+        }
+
+        public Label getLabel() {
+
+        }
+
+        public Label processText(String text) {
 
         }
     }
 
-    public class NegativeTextAnalyzer implements TextAnalyzer{
+    public class NegativeTextAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
 
-        Label processText(String text){
+        public String[] getKeywords() {
+
+        }
+
+        public Label getLabel() {
+
+        }
+
+        public Label processText(String text) {
 
         }
     }
 
-    public class TooLongTextAnalyzer implements TextAnalyzer{
+    public class TooLongTextAnalyzer implements TextAnalyzer {
         private int maxLength;
 
-        public TooLongTextAnalyzer(int maxLength){
+        public TooLongTextAnalyzer(int maxLength) {
             this.maxLength = maxLength;
         }
 
-        Label processText(String text){
+        public Label processText(String text) {
 
         }
     }
